@@ -20,4 +20,4 @@ Offene Aufgaben:
   1. Runden einfügen für die Effizens 
   2. Überprüfen der Pfade
   3. Sensibilitäts Analyse des Rundungsfaktor 
-  4. 
+  4. Pfad Auslesen Automatiseren 
