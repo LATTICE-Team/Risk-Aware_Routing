@@ -4,17 +4,18 @@ import random
 import math
 
 
-def create_graph(anzahl_andere_knoten=10, seed=11):
+def create_graph(anzahl_andere_knoten=10, seed=420):
     random.seed(seed)
 
     G = nx.DiGraph()
 
-    # Startknoten mit allen Attributen
+    # Startknoten mit Attributen
     G.add_node(
         0, 
         pos=(random.uniform(0.5, 10.0),random.uniform(0.5, 10.0)),
         color="red",
-        label="Start"
+        label="Start",
+        demand = 0
     )
 
     # Weitere Knoten mit zufälligen positiven Koordinaten
@@ -26,7 +27,8 @@ def create_graph(anzahl_andere_knoten=10, seed=11):
             node,
             pos=(x, y),
             color="lightblue",
-            label=f"Knoten {node}"
+            label=f"Knoten {node}",
+            demand=2
         )
 
     # Vollständig gerichteter Graph:
@@ -136,4 +138,6 @@ if __name__ == '__main__':
     # for u, v, data in G.edges(data=True):
     #     print(f"{u} -> {v}: {data}")
 
-    nx.write_gml(G, "Lattice/my_graph_1.gml")
+    nx.write_gml(G, "Lattice/Risk-Aware_Routing/Graph-Editor/my_graph_1.gml")
+
+  

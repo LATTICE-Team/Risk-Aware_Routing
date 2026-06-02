@@ -1,11 +1,11 @@
 import mip
 import networkx as nx
 import sys
-sys.path.insert(1, 'Lattice/Graph-Editor')
+sys.path.insert(1, 'Lattice/Risk-Aware_Routing/Graph-Editor')
 from graph import plot_graph, graph_to_cost_list
 from itertools import product
 
-G = nx.read_gml("Lattice/Graph-Editor/my_graph_1.gml",destringizer=int)
+G = nx.read_gml("Lattice/Risk-Aware_Routing/Graph-Editor/my_graph_1.gml",destringizer=int)
 
 n = G.number_of_nodes()
 k = 3               # Number of Vehicles
@@ -13,7 +13,8 @@ N = set(range(n))   # Set of Nodes/Vertices
 K = set(range(k))   # Set of Vehicles
 
 c = graph_to_cost_list(G)   # Edge Weights
-
+C = [2 for k in K]
+d = [G.nodes[i]["demand"] for i in range(n)]
 ## Optimierungsproblem
 model = mip.Model()
 
@@ -23,9 +24,9 @@ y = [[ model.add_var(var_type=mip.CONTINUOUS) for k in K ] for i in N]
 
 model.objective = mip.xsum(mip.xsum(mip.xsum(c[i][j]*x[i][j][k] for i in N)for j in N) for k in K)
 
-# jeder Knoten wird mindestens einmal besucht
+# jeder Knoten wird genau einmal besucht
 for i in N-{0}:
-    model += mip.xsum(mip.xsum(x[i][j][k] for j in N-{0}) for k in K) == 1    
+    model += mip.xsum(mip.xsum(x[i][j][k] for j in N) for k in K) == 1    
 
 
 z = [model.add_var(var_type=mip.BINARY) for k in K]     # 1: Fahrzeug wird benutzt, 0: Fahrzeug wird nicht benutzt
@@ -51,6 +52,8 @@ for k in K:
             model += y[i][k] - (n+1)*x[i][j][k] >= y[j][k]-n 
 
 
+
+
 status = model.optimize(max_seconds=300)
 
 x_sol_float = [[[x[i][j][k].x for k in K] for j in N] for i in N]
@@ -68,9 +71,16 @@ for k in K:
     for j in N:
         for i in N:
             if x_sol[i][j][k] == 1:
-                #G[i][j]["color"] = color_palette[k]
-                #G[i][j]["width"] = 2
+                G[i][j]["color"] = color_palette[k]
+                G[i][j]["width"] = 2
                 route[k].append((i,j))
 
+# for k in K:
+#     if z[k] == 1:
+#         for i in N:
+#             if x_sol[0][i][k] == 1:
+#                 route[k].append((0,i))
+
 print(route)
+print(route[0][1][1])
 plot_graph(G)
