@@ -1,0 +1,21 @@
+NODE_RADIUS = 16.0
+CONTAINER_RADIUS = 9.0
+ROBOT_HALF_SIZE = 10.0
+ROUTE_WIDTH = 3.0
+ROBOT_ROUTE_WIDTH = 1.5
+LANE_GAP = 9.0
+ANIMATION_INTERVAL_MS = 30
+DEFAULT_SPEED = 10.0
+
+CONTAINER_PALETTE = [
+    "#e41a1c",
+    "#377eb8",
+    "#4daf4a",
+    "#984ea3",
+    "#ff7f00",
+    "#a65628",
+    "#f781bf",
+    "#999999",
+    "#66c2a5",
+    "#fc8d62",
+]

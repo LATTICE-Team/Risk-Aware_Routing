@@ -1,0 +1,12 @@
+[project]
+name = "vrp-solution-viewer"
+version = "0.1.0"
+description = "PySide6/NetworkX viewer for extended VRP robot-container solutions"
+requires-python = ">=3.10"
+dependencies = [
+  "PySide6>=6.7",
+  "networkx>=3.2",
+]
+
+[project.scripts]
+vrp-solution-viewer = "vrp_solution_viewer.__main__:main"
