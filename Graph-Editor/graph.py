@@ -15,20 +15,29 @@ def create_graph(anzahl_andere_knoten=10, seed=420):
         pos=(random.uniform(0.5, 10.0),random.uniform(0.5, 10.0)),
         color="red",
         label="Start",
-        demand = 0
+        demand = 0,
+        start = 0,
+        end = 0,
+        service_duration = 0
     )
 
     # Weitere Knoten mit zufälligen positiven Koordinaten
     for node in range(1, anzahl_andere_knoten + 1):
         x = random.uniform(0.5, 10.0)
         y = random.uniform(0.5, 10.0)
+        start = random.uniform(1.0,3.0)*node
+        end = start + random.uniform(1.0,10.0)
+        service_duration = random.uniform(1.0,3.0)
 
         G.add_node(
             node,
             pos=(x, y),
             color="lightblue",
             label=f"Knoten {node}",
-            demand=2
+            demand=1,
+            start = start,
+            end = end,
+            service_duration = service_duration
         )
 
     # Vollständig gerichteter Graph:
@@ -42,8 +51,8 @@ def create_graph(anzahl_andere_knoten=10, seed=420):
 
                 distanz = math.dist(pos_u, pos_v)
 
-                G.add_edge(u, v, weight=distanz)
-                G.add_edge(v, u, weight=distanz)
+                G.add_edge(u, v, weight=distanz, distance=distanz)
+                G.add_edge(v, u, weight=distanz, distance=distanz)
 
     return G
 
@@ -122,10 +131,25 @@ def graph_to_cost_list(G, weight_attr="weight", missing_value=0.0, diagonal_valu
 
     return c
 
+def edge_attribute_to_list(G, edge_attr, missing_value=0.0, diagonal_value=0.0):
+# nur gültig für vollständige Graphen
+    n = G.number_of_nodes()
+
+    # Matrix initialisieren
+    c = [
+        [missing_value for _ in range(n)]
+        for _ in range(n)
+    ]
+
+    # Kanten eintragen
+    for u,v,data in G.edges(data=True):
+        c[u][v] = data[edge_attr]
+
+    return c
+
 if __name__ == '__main__':
     # Graph erzeugen
     G = create_graph()
-    print(G.nodes)
     # Graph plotten
     plot_graph(G)
 
