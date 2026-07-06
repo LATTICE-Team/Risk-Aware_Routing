@@ -4,7 +4,7 @@ import random
 import math
 
 
-def create_graph(anzahl_andere_knoten=10, seed=420):
+def create_graph(anzahl_andere_knoten=5, seed=69):
     random.seed(seed)
 
     G = nx.DiGraph()
@@ -25,7 +25,7 @@ def create_graph(anzahl_andere_knoten=10, seed=420):
     for node in range(1, anzahl_andere_knoten + 1):
         x = random.uniform(0.5, 10.0)
         y = random.uniform(0.5, 10.0)
-        start = random.uniform(1.0,3.0)*node
+        start = random.uniform(1.0,3.0)*node+10
         end = start + random.uniform(1.0,10.0)
         service_duration = random.uniform(1.0,3.0)
 
