@@ -4,8 +4,8 @@ ROBOT_HALF_SIZE = 10.0
 ROUTE_WIDTH = 3.0
 ROBOT_ROUTE_WIDTH = 1.5
 LANE_GAP = 9.0
-ANIMATION_INTERVAL_MS = 30
-DEFAULT_SPEED = 10.0
+ANIMATION_INTERVAL_MS = 20
+DEFAULT_SPEED = 2.0
 
 # Visual scaling
 # The defaults above are calibrated for graphs whose larger coordinate span is

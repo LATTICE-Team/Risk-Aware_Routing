@@ -51,4 +51,4 @@ Knotenpositionen können als `pos`, `position` oder als `x`/`y`-Attribute angege
 
 ## Adapter für MIP-Ausgabe
 
-`vrp_solution_viewer/adapters/mip_solution_adapter.py` enthält eine Adapterfunktion, die aktive Binärvariablen in Bewegungsereignisse überführt. Der Kernviewer bleibt dadurch unabhängig davon, ob die Variablen aus `python-mip`, aus JSON oder aus einer Testinstanz stammen.
+`vrp_solution_viewer/adapters` enthält Adapterfunktionen, die aktive Binärvariablen in Bewegungsereignisse überführt. Der Kernviewer bleibt dadurch unabhängig davon, ob die Variablen aus `python-mip`, aus JSON oder aus einer Testinstanz stammen.
