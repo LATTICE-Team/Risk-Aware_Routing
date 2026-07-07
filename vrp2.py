@@ -10,8 +10,8 @@ G = nx.read_gml("Lattice/Risk-Aware_Routing/Graph-Editor/my_graph_1.gml",destrin
 
 n = G.number_of_nodes()
 I = set(range(n))   # Set of Nodes/Vertices/Jobs
-K = set(range(3))   # Set of Containers
-V = set(range(3))   # Set of Roboters
+K = set(range(4))   # Set of Containers
+V = set(range(4))   # Set of Roboters
 
 w = graph_to_cost_list(G)   # Edge Weights
 T = edge_attribute_to_list(G, "distance")   # Travel-Time
@@ -187,11 +187,10 @@ for v in V:
 
 #-----Zielfunktion-------------------------------------------------------------------------------------
 loaded_cost = mip.xsum(y[v][k][i][j] * w[i][j] for v in V for k in K for i in I for j in I if i != j)
-# empty_start_cost = mip.xsum(firsttask[v][a] * w[0][pickup_node(a)] for v in V for a in A_idx)
-# empty_between_cost = mip.xsum(nexttask[v][a][b] * w[drop_node(a)][pickup_node(b)] for v in V for a in A_idx for b in A_idx if a != b)
-# empty_end_cost = mip.xsum(lasttask[v][a] * w[drop_node(a)][0] for v in V for a in A_idx)
-# model.objective = (loaded_cost + empty_start_cost + empty_between_cost + empty_end_cost)
-model.objective = mip.xsum(x[k][i][j] for k in K for i in I for j in I) + loaded_cost
+empty_start_cost = mip.xsum(firsttask[v][a] * w[0][pickup_node(a)] for v in V for a in A_idx)
+empty_between_cost = mip.xsum(nexttask[v][a][b] * w[drop_node(a)][pickup_node(b)] for v in V for a in A_idx for b in A_idx if a != b)
+empty_end_cost = mip.xsum(lasttask[v][a] * w[drop_node(a)][0] for v in V for a in A_idx)
+model.objective = (loaded_cost + empty_start_cost + empty_between_cost + empty_end_cost)
 #-----Solution---------------------------------------------------------------------------------------
 model.max_seconds = 300
 status = model.optimize()
