@@ -263,97 +263,76 @@
   "containers": [
     "0",
     "1",
-    "2"
+    "2",
+    "3"
   ],
   "robots": [
     "0",
     "1",
-    "2"
+    "2",
+    "3"
   ],
   "container_colors": {
     "0": "#ebac23",
     "1": "#b80058",
-    "2": "#008cf9"
+    "2": "#008cf9",
+    "3": "#006e00"
   },
   "container_movements": [
     {
-      "agent_id": "0",
-      "source": 0,
-      "target": 4,
-      "start": 12.529191472263957,
-      "end": 15.139482437911578,
-      "color": "#ebac23",
-      "metadata": {
-        "kind": "container",
-        "container": "0"
-      }
-    },
-    {
-      "agent_id": "0",
-      "source": 4,
-      "target": 0,
-      "start": 79.98522530142513,
-      "end": 82.59551626707275,
-      "color": "#ebac23",
-      "metadata": {
-        "kind": "container",
-        "container": "0"
-      }
-    },
-    {
       "agent_id": "1",
-      "source": 0,
-      "target": 2,
-      "start": 11.836101772427739,
-      "end": 15.315368873725717,
-      "color": "#b80058",
-      "metadata": {
-        "kind": "container",
-        "container": "1"
-      }
-    },
-    {
-      "agent_id": "1",
-      "source": 2,
-      "target": 0,
-      "start": 79.11624916559573,
-      "end": 82.59551626689372,
-      "color": "#b80058",
-      "metadata": {
-        "kind": "container",
-        "container": "1"
-      }
-    },
-    {
-      "agent_id": "2",
       "source": 0,
       "target": 1,
-      "start": 4.759575014817378,
+      "start": 4.75957501481739,
       "end": 11.656072064040263,
-      "color": "#008cf9",
+      "color": "#b80058",
       "metadata": {
         "kind": "container",
-        "container": "2"
+        "container": "1"
       }
     },
     {
-      "agent_id": "2",
+      "agent_id": "1",
       "source": 1,
       "target": 3,
-      "start": 15.703996619003046,
-      "end": 17.26618679021302,
-      "color": "#008cf9",
+      "start": 14.2321743028557,
+      "end": 15.794364474065677,
+      "color": "#b80058",
       "metadata": {
         "kind": "container",
-        "container": "2"
+        "container": "1"
       }
     },
     {
-      "agent_id": "2",
+      "agent_id": "1",
       "source": 3,
       "target": 5,
-      "start": 19.050418930759285,
-      "end": 29.394564425225937,
+      "start": 17.578596614611943,
+      "end": 22.25264150674227,
+      "color": "#b80058",
+      "metadata": {
+        "kind": "container",
+        "container": "1"
+      }
+    },
+    {
+      "agent_id": "1",
+      "source": 5,
+      "target": 0,
+      "start": 23.459168115498503,
+      "end": 29.725521201110187,
+      "color": "#b80058",
+      "metadata": {
+        "kind": "container",
+        "container": "1"
+      }
+    },
+    {
+      "agent_id": "2",
+      "source": 0,
+      "target": 2,
+      "start": 11.83610177242774,
+      "end": 15.315368873725719,
       "color": "#008cf9",
       "metadata": {
         "kind": "container",
@@ -362,14 +341,38 @@
     },
     {
       "agent_id": "2",
-      "source": 5,
+      "source": 2,
       "target": 0,
-      "start": 30.60109103398217,
-      "end": 36.867444119593856,
+      "start": 17.97659521365368,
+      "end": 21.45586231495166,
       "color": "#008cf9",
       "metadata": {
         "kind": "container",
         "container": "2"
+      }
+    },
+    {
+      "agent_id": "3",
+      "source": 0,
+      "target": 4,
+      "start": 12.529191472263959,
+      "end": 15.13948243791158,
+      "color": "#006e00",
+      "metadata": {
+        "kind": "container",
+        "container": "3"
+      }
+    },
+    {
+      "agent_id": "3",
+      "source": 4,
+      "target": 0,
+      "start": 17.52683804743998,
+      "end": 20.137129013087602,
+      "color": "#006e00",
+      "metadata": {
+        "kind": "container",
+        "container": "3"
       }
     }
   ],
@@ -378,50 +381,22 @@
       "agent_id": "0",
       "source": 0,
       "target": 1,
-      "start": 4.759575014817378,
+      "start": 4.75957501481739,
       "end": 11.656072064040263,
       "loaded": true,
-      "container_id": "2",
+      "container_id": "1",
       "metadata": {
         "kind": "robot_loaded",
         "robot": "0",
-        "container": "2"
+        "container": "1"
       }
     },
     {
       "agent_id": "0",
       "source": 1,
       "target": 3,
-      "start": 15.703996619003046,
-      "end": 17.26618679021302,
-      "loaded": true,
-      "container_id": "2",
-      "metadata": {
-        "kind": "robot_loaded",
-        "robot": "0",
-        "container": "2"
-      }
-    },
-    {
-      "agent_id": "0",
-      "source": 3,
-      "target": 2,
-      "start": 17.26618679021302,
-      "end": 22.58334060880172,
-      "loaded": false,
-      "metadata": {
-        "kind": "robot_empty_between",
-        "robot": "0",
-        "previous_task": 67,
-        "next_task": 40
-      }
-    },
-    {
-      "agent_id": "0",
-      "source": 2,
-      "target": 0,
-      "start": 79.11624916559573,
-      "end": 82.59551626689372,
+      "start": 14.2321743028557,
+      "end": 15.794364474065677,
       "loaded": true,
       "container_id": "1",
       "metadata": {
@@ -431,114 +406,87 @@
       }
     },
     {
-      "agent_id": "1",
-      "source": 0,
-      "target": 4,
-      "start": 12.529191472263957,
-      "end": 15.139482437911578,
-      "loaded": true,
-      "container_id": "0",
-      "metadata": {
-        "kind": "robot_loaded",
-        "robot": "1",
-        "container": "0"
-      }
-    },
-    {
-      "agent_id": "1",
-      "source": 4,
-      "target": 3,
-      "start": 15.139482437911578,
-      "end": 19.050418930759292,
-      "loaded": false,
-      "metadata": {
-        "kind": "robot_empty_between",
-        "robot": "1",
-        "previous_task": 3,
-        "next_task": 79
-      }
-    },
-    {
-      "agent_id": "1",
+      "agent_id": "0",
       "source": 3,
       "target": 5,
-      "start": 19.050418930759285,
-      "end": 29.394564425225937,
+      "start": 17.578596614611943,
+      "end": 22.25264150674227,
       "loaded": true,
-      "container_id": "2",
+      "container_id": "1",
       "metadata": {
         "kind": "robot_loaded",
-        "robot": "1",
-        "container": "2"
+        "robot": "0",
+        "container": "1"
       }
     },
     {
-      "agent_id": "1",
+      "agent_id": "0",
       "source": 5,
       "target": 0,
-      "start": 30.60109103398217,
-      "end": 36.867444119593856,
+      "start": 23.459168115498503,
+      "end": 29.725521201110187,
       "loaded": true,
-      "container_id": "2",
+      "container_id": "1",
       "metadata": {
         "kind": "robot_loaded",
-        "robot": "1",
-        "container": "2"
-      }
-    },
-    {
-      "agent_id": "1",
-      "source": 0,
-      "target": 4,
-      "start": 36.867444119593856,
-      "end": 39.47773508524148,
-      "loaded": false,
-      "metadata": {
-        "kind": "robot_empty_between",
-        "robot": "1",
-        "previous_task": 85,
-        "next_task": 20
-      }
-    },
-    {
-      "agent_id": "1",
-      "source": 4,
-      "target": 0,
-      "start": 79.98522530142513,
-      "end": 82.59551626707275,
-      "loaded": true,
-      "container_id": "0",
-      "metadata": {
-        "kind": "robot_loaded",
-        "robot": "1",
-        "container": "0"
+        "robot": "0",
+        "container": "1"
       }
     },
     {
       "agent_id": "2",
       "source": 0,
       "target": 2,
-      "start": 11.836101772427739,
-      "end": 15.315368873725717,
+      "start": 11.83610177242774,
+      "end": 15.315368873725719,
       "loaded": true,
-      "container_id": "1",
+      "container_id": "2",
       "metadata": {
         "kind": "robot_loaded",
         "robot": "2",
-        "container": "1"
+        "container": "2"
       }
     },
     {
       "agent_id": "2",
       "source": 2,
       "target": 0,
-      "start": 15.315368873725717,
-      "end": 18.7946359750237,
-      "loaded": false,
+      "start": 17.97659521365368,
+      "end": 21.45586231495166,
+      "loaded": true,
+      "container_id": "2",
       "metadata": {
-        "kind": "robot_empty_end",
+        "kind": "robot_loaded",
         "robot": "2",
-        "task": 31
+        "container": "2"
+      }
+    },
+    {
+      "agent_id": "3",
+      "source": 0,
+      "target": 4,
+      "start": 12.529191472263959,
+      "end": 15.13948243791158,
+      "loaded": true,
+      "container_id": "3",
+      "metadata": {
+        "kind": "robot_loaded",
+        "robot": "3",
+        "container": "3"
+      }
+    },
+    {
+      "agent_id": "3",
+      "source": 4,
+      "target": 0,
+      "start": 17.52683804743998,
+      "end": 20.137129013087602,
+      "loaded": true,
+      "container_id": "3",
+      "metadata": {
+        "kind": "robot_loaded",
+        "robot": "3",
+        "container": "3"
       }
     }
   ],
@@ -553,24 +501,24 @@
     "warnings": [],
     "container_job_assignments": [
       {
-        "container": "0",
-        "job": 4
-      },
-      {
         "container": "1",
-        "job": 2
-      },
-      {
-        "container": "2",
         "job": 1
       },
       {
-        "container": "2",
+        "container": "1",
         "job": 3
       },
       {
-        "container": "2",
+        "container": "1",
         "job": 5
+      },
+      {
+        "container": "2",
+        "job": 2
+      },
+      {
+        "container": "3",
+        "job": 4
       }
     ]
   }

@@ -11,7 +11,6 @@ G = nx.read_gml("Lattice/Risk-Aware_Routing/Graph-Editor/my_graph_1.gml",destrin
 n = G.number_of_nodes()
 I = set(range(n))   # Set of Nodes/Vertices/Jobs
 K = set(range(10))   # Set of Containers
-V = set(range(10))   # Set of Roboters
 
 w = graph_to_cost_list(G)   # Edge Weights
 T = edge_attribute_to_list(G, "distance")   # Travel-Time
@@ -22,7 +21,7 @@ time_window = [[G.nodes[i]["start"], G.nodes[i]["end"]] for i in I] # Time Windo
 
 max_T = max(T[i][j] for i in I for j in I)
 H = max(time_window[i][1] for i in I) + sum(service_duration[i] for i in I) + n * max_T
-M = H + max_T
+M = H + max_T + 1
 
 #------------------------------------------------------------------------------------------------------------------
 ## Optimization problem
@@ -73,7 +72,7 @@ for i in I:
 # zeitliche Constraints Container
 for k in K:
     for i in I-{0}:
-        model += cont_arrival[k][i] <= (time_window[i][1]-service_duration[i]) * c[k][i]
+        model += cont_arrival[k][i] <= time_window[i][1] * c[k][i]
         model += cont_arrival[k][i] >= time_window[i][0] * c[k][i]
 
 # zeitliche Konsistenz von Depot zu Kunden
@@ -123,14 +122,14 @@ else:
 if status == mip.OptimizationStatus.OPTIMAL or status == mip.OptimizationStatus.FEASIBLE:
     from pathlib import Path
 
+if status == mip.OptimizationStatus.OPTIMAL or status == mip.OptimizationStatus.FEASIBLE:
+    x_sol_float = [[[x[k][i][j].x for j in I] for i in I] for k in K]
+    x_sol = [[[round(x[k][i][j].x) for j in I] for i in I] for k in K]
 
-x_sol_float = [[[x[k][i][j].x for j in I] for i in I] for k in K]
-x_sol = [[[round(x[k][i][j].x) for j in I] for i in I] for k in K]
-
-route = [[] for k in K]
-for k in K:
-    for j in I:
-        for i in I:
-            if x_sol[k][i][j] == 1:
-                route[k].append((i,j))
-print(route)
+    route = [[] for k in K]
+    for k in K:
+        for j in I:
+            for i in I:
+                if x_sol[k][i][j] == 1:
+                    route[k].append((i,j))
+    print(route)

@@ -4,7 +4,7 @@ import random
 import math
 
 
-def create_graph(anzahl_andere_knoten=5, seed=69):
+def create_graph(anzahl_andere_knoten=10, seed=69):
     random.seed(seed)
 
     G = nx.DiGraph()

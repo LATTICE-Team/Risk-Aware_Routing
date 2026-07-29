@@ -108,7 +108,7 @@ for i in I:
 # zeitliche Constraints Container
 for k in K:
     for i in I-{0}:
-        model += cont_arrival[k][i] <= (time_window[i][1]-service_duration[i]) * c[k][i]
+        model += cont_arrival[k][i] <= time_window[i][1] * c[k][i]
         model += cont_arrival[k][i] >= time_window[i][0] * c[k][i]
 
 # zeitliche Konsistenz von Depot zu Kunden
@@ -192,7 +192,7 @@ empty_between_cost = mip.xsum(nexttask[v][a][b] * w[drop_node(a)][pickup_node(b)
 empty_end_cost = mip.xsum(lasttask[v][a] * w[drop_node(a)][0] for v in V for a in A_idx)
 model.objective = (loaded_cost + empty_start_cost + empty_between_cost + empty_end_cost)
 #-----Solution---------------------------------------------------------------------------------------
-model.max_seconds = 300
+model.max_seconds = 600
 status = model.optimize()
 if status == mip.OptimizationStatus.OPTIMAL:
     print('optimal solution cost {} found'.format(model.objective_value))
