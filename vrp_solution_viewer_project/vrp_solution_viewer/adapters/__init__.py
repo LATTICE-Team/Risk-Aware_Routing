@@ -1,3 +1,0 @@
-from vrp_solution_viewer.adapters.mip_solution_adapter import build_solution_from_active_variables
-
-__all__ = ["build_solution_from_active_variables"]
