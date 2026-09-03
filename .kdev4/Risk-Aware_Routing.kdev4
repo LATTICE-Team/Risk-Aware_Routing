@@ -1,0 +1,28 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00$\x00R\x00i\x00s\x00k\x00-\x00A\x00w\x00a\x00r\x00e\x00_\x00R\x00o\x00u\x00t\x00i\x00n\x00g)
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=scriptAppLauncher
+Name=New Script Application Launcher
+Type=Script Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+EnvironmentGroup=
+Executable=
+Execute on Remote Host=false
+Interpreter=/home/benjamin/Lattice/.venv/bin/python3.12
+Output Filtering Mode=2
+Remote Host=
+Run current file=true
+Working Directory=file:///home/benjamin/Lattice/Risk-Aware_Routing
+
+[Project]
+VersionControlSupport=kdevgit
+
+[pythonsupport]
+interpreter=/home/benjamin/Lattice/.venv/bin/python3.12

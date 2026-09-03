@@ -91,10 +91,11 @@ def createGraph2(x,y):
     G.add_edge(f'v_{x}_{y}', 't', TransittimesPDF=[[3.,4.,6.], [1/2, 1/3, 1/6]])
     return G
 
-"""
-x=10
-y=10
-G=createGitterGraph(x,y)
-m1 = [attrs['T0'] for n, attrs in G.nodes(data=True) if 'T0' in attrs]
-print(f"Nodes: {G.number_of_nodes()}, Edges: {G.number_of_edges()}")
-"""
+if __name__ == '__main__':
+    x=3
+    y=3
+    G=createGraph2(x,y)
+    m1 = [attrs['T0'] for n, attrs in G.nodes(data=True) if 'T0' in attrs]
+    paths = list(nx.all_simple_paths(G,source='s',target='t'))
+    print(nx.number_of_nodes(G))
+    print(len(paths))

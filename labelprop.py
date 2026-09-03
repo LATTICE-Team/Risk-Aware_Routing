@@ -4,7 +4,7 @@ def labelprop(pdf1, pdf2, maxTime):
     """
     Propagate a vertex label (pdf) via an edge.
     Output is label at end of edge (pdfout, no update of target vertex label).
-    
+
     Parameters
     ----------
     pdf1 : np.ndarray
@@ -13,7 +13,7 @@ def labelprop(pdf1, pdf2, maxTime):
         2 x M array, second pdf
     maxTime : float
         maximum allowed time
-    
+
     Returns
     -------
     pdfout : np.ndarray
@@ -78,17 +78,12 @@ def labelprop(pdf1, pdf2, maxTime):
         else:
             i+=1
 
-        
-        
+    return pdfout
 
-    return pdfout 
-"""
-pdf1 = np.array([[4., 5., 6., 7., 8.,9.],
-       [0.16666667, 0.27777778, 0.27777778, 0.16666667, 0.05555556,
-        0.05555556]])
-pdf2 = np.array([[1.  , 2.  , 3.  ],
-       [0.25, 0.25, 0.5 ]])
-maxTime = 9
-pdfout = labelprop(pdf1, pdf2, maxTime)
-print("pdfout =\n", pdfout)
-"""
+
+if __name__ == '__main__':
+    pdf1 = np.array([[4., 5., 6., 7., 8.,9.], [0.16666667, 0.27777778, 0.27777778, 0.16666667, 0.05555556, 0.05555556]])
+    pdf2 = np.array([[1.  , 2.  , 3.  ], [0.25, 0.25, 0.5 ]])
+    maxTime = 9
+    pdfout = labelprop(pdf1, pdf2, maxTime)
+    print("pdfout =\n", pdfout)
