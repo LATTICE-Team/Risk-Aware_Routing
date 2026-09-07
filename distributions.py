@@ -55,6 +55,7 @@ def cdf2pdf(cdf):
     -------
     pdf : 2 x N numpy.ndarray
     """
+    tolerance = 1e-8    # tolerance for floatingpoint error
     cdf = np.asarray(cdf, dtype=float)
 
     if cdf.ndim != 2 or cdf.shape[0] != 2:
@@ -74,9 +75,10 @@ def cdf2pdf(cdf):
             "Support points must be strictly increasing."
         )
 
-    if np.any(probabilities < 0) or np.any(probabilities > 1):
+    if np.any(probabilities < 0 - tolerance) or np.any(probabilities > 1 + tolerance):
         raise ValueError(
-            "CDF values must lie between 0 and 1."
+            f"CDF values must lie between 0 and 1. "
+            f"values are {probabilities}"
         )
 
     if np.any(np.diff(probabilities) < 0):
