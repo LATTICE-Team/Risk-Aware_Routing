@@ -17,7 +17,6 @@ def labelprop(pdf1, pdf2):
     pdfout : np.ndarray
         propagated pdf
     """
-    pdfout_list = []
     pdfout=[]
     n1 = pdf1.shape[1]
     n2 = pdf2.shape[1]
@@ -26,37 +25,19 @@ def labelprop(pdf1, pdf2):
             value=pdf1[0,i]+pdf2[0,j]
             prob=pdf1[1,i]*pdf2[1,j]
             pdfout.append([value,prob])
-    """
-    for i in range(pdf1.shape[1]):
-        for j in range(pdf2.shape[1]):
-            value = pdf1[0, i] + pdf2[0, j]
-            prob = pdf1[1, i] * pdf2[1, j]
-            pdfout.append([value, prob])
-    """
 
     pdfout = np.array(pdfout).T
-
 
     # Sortieren nach erster Zeile (Zeit)
     sort_idx = np.argsort(pdfout[0, :])
     pdfout = pdfout[:, sort_idx]
 
     # Doppelte Zeiten zusammenführen (Wahrscheinlichkeiten addieren)
-    """
-    i = 0
-    while i < pdfout.shape[1] - 1:
-        if pdfout[0, i] == pdfout[0, i+1]:
-            pdfout[1, i] = min(pdfout[1,i]+pdfout[1, i+1],1)
-            pdfout = np.delete(pdfout, i+1, axis=1)
-        else:
-            i += 1
 
-    return pdfout
-    """
     i=0
     while i < pdfout.shape[1]-1:
-        if pdfout[0,i]==pdfout[0,i+1]:
-            pdfout[1, i] = pdfout[1,i]+pdfout[1, i+1]
+        if pdfout[0, i]==pdfout[0, i+1]:
+            pdfout[1, i] = pdfout[1, i]+pdfout[1, i+1]
             pdfout = np.delete(pdfout, i+1, axis=1)
         else:
             i+=1
@@ -65,7 +46,7 @@ def labelprop(pdf1, pdf2):
 
 
 if __name__ == '__main__':
-    pdf1 = np.array([[4., 5., 6., 7., 8.,9.], [0.16666667, 0.27777778, 0.27777778, 0.16666667, 0.05555556, 0.05555556]])
+    pdf1 = np.array([[4., 5., 6., 7., 8., 9.], [0.16666667, 0.27777778, 0.27777778, 0.16666667, 0.05555556, 0.05555556]])
     pdf2 = np.array([[1.  , 2.  , 3.  ], [0.25, 0.25, 0.5 ]])
     pdfout = labelprop(pdf1, pdf2)
     print("pdfout =\n", pdfout)

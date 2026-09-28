@@ -1,43 +1,22 @@
 import numpy as np
+from distributions import isvalid_cdf
 
-def maxcdf(cdf1, cdf2, t0alt,v,w,zk):
+def maxcdf(cdf1, cdf2):
     """
-    Updates the target vertex label by merging two discrete CDFs.
-    
+    Merges two discrete CDFs by preserving the maximal value of both CDFs for each probability.
+
     Parameters
     ----------
-    cdf1 : np.ndarray
-        2 x N array, old vertex CDF
-    cdf2 : np.ndarray
-        2 x M array, incoming propagated CDF
-    t0alt : float
-        previous t0 value (time of first change in cdf1)
-    v : string
-        Startknoten 
-    W : string
-        Zielknoten
+    cdf1 : 2 x N np.ndarray
+
+    cdf2 : 2 x M np.ndarray
+
     Returns
     -------
-    mcdf : np.ndarray
-        merged CDF
-    t0 : float
-        updated t0
-
-        im programm Algorithmus wurde es als cdf1 als target genommen und cdf2 ist die Verbindung aus alten Knotenn und propagierten  Knoten 
-        v gehört zu cdf2
-        w gehört zu cdf1 
+    mcdf : np.ndarray merged CDF
     """
-    t0 = t0alt
-
-  
-
-
-    w_cdflabel=w
-    while len(w_cdflabel)!=np.shape(cdf1)[1]:
-        w_cdflabel=w_cdflabel+[w[-1]]
-    
-    v_cdflabel=v*np.shape(cdf2)[1]
-   
+    isvalid_cdf(cdf1)
+    isvalid_cdf(cdf2)
 
     # Node reached for the first time
     if cdf1[0,0] == 100000:
@@ -46,15 +25,12 @@ def maxcdf(cdf1, cdf2, t0alt,v,w,zk):
     else:
         mcdf = np.hstack((cdf1, cdf2))
         mcdflabel=w_cdflabel+v_cdflabel
-    
-
-
 
     # Sort according to first row
     sort_idx = np.argsort(mcdf[0, :])
     mcdf = mcdf[:, sort_idx]
     mcdflabel=[mcdflabel[i] for i in sort_idx]
-    
+
     # Merge double entries in first row (max in second row)
     i = 0
     while i < mcdf.shape[1] - 1:
@@ -83,17 +59,15 @@ def maxcdf(cdf1, cdf2, t0alt,v,w,zk):
     while i < imax and np.allclose(mcdf[:, i], cdf1[:, i], atol=1e-12):
         i += 1
 
-    if i < imax:
-        t0 = mcdf[0, i]
 
-    return mcdf, t0,mcdflabel
-"""
-cdf1 = np.array([[3, 4, 6], [1/2, 5/6, 1]])
-cdf2 = np.array([[1000000], [1]])
-t0old = 4
-v='s'
-w='v_1_1'
-mcdf, t0 = maxcdf(cdf1, cdf2, t0old,v,w)
-print("mcdf =\n", mcdf)
-print("t0 =", t0)
-"""
+    return mcdf
+
+if __name__ == '__main__':
+    cdf1 = np.array([[3, 4, 6], [1/2, 5/6, 1]])
+    cdf2 = np.array([[1000000], [1]])
+    t0old = 4
+    v='s'
+    w='v_1_1'
+    mcdf, t0 = maxcdf(cdf1, cdf2, t0old,v,w)
+    print("mcdf =\n", mcdf)
+    print("t0 =", t0)

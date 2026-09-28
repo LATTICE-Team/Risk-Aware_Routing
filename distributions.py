@@ -1,18 +1,6 @@
 import numpy as np
 
-
-def pdf2cdf(pdf):
-    """
-    Convert a discrete probability density function (pdf) to a cumulative distribution function (cdf).
-
-    Parameters
-    ----------
-    pdf : 2 x N numpy.ndarray
-
-    Returns
-    -------
-    cdf : 2 x N numpy.ndarray
-    """
+def isvalid_pdf(pdf):
     pdf = np.asarray(pdf, dtype=float)
 
     if pdf.ndim != 2 or pdf.shape[0] != 2:
@@ -36,25 +24,9 @@ def pdf2cdf(pdf):
         raise ValueError(
             f"Probabilities sum to {np.sum(probabilities)}, not 1."
         )
+    return 1
 
-    cdf = pdf.copy()
-    cdf[1] = np.cumsum(cdf[1])
-
-    return cdf
-
-
-def cdf2pdf(cdf):
-    """
-    Convert a discrete cumulative distribution function (cdf) to a probability density function (pdf).
-
-	Parameters
-    ----------
-    cdf : 2 x N numpy.ndarray
-
-    Returns
-    -------
-    pdf : 2 x N numpy.ndarray
-    """
+def isvalid_cdf(cdf):
     tolerance = 1e-8    # tolerance for floatingpoint error
     cdf = np.asarray(cdf, dtype=float)
 
@@ -91,7 +63,41 @@ def cdf2pdf(cdf):
             f"Invalid CDF: final cumulative probability is "
             f"{probabilities[-1]}, not 1."
         )
+    return 1
 
+def pdf2cdf(pdf):
+    """
+    Convert a discrete probability density function (pdf) to a cumulative distribution function (cdf).
+
+    Parameters
+    ----------
+    pdf : 2 x N numpy.ndarray
+
+    Returns
+    -------
+    cdf : 2 x N numpy.ndarray
+    """
+    pdf = np.asarray(pdf, dtype=float)
+    isvalid_pdf(pdf)
+
+    cdf = pdf.copy()
+    cdf[1] = np.cumsum(cdf[1])
+
+    return cdf
+
+
+def cdf2pdf(cdf):
+    """
+    Convert a discrete cumulative distribution function (cdf) to a probability density function (pdf).
+
+    Parameters
+    ----------
+    cdf : 2 x N numpy.ndarray
+
+    Returns
+    -------
+    pdf : 2 x N numpy.ndarray
+    """
     pdf = cdf.copy()
 
     pdf[1, 0] = cdf[1, 0]
