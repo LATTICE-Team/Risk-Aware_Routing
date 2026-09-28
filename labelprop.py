@@ -17,13 +17,13 @@ def labelprop(pdf1, pdf2):
     pdfout : np.ndarray
         propagated pdf
     """
-    pdfout=[]
+    pdfout = []
     n1 = pdf1.shape[1]
     n2 = pdf2.shape[1]
     for i in range(n1):
         for j in range(n2):
-            value=pdf1[0,i]+pdf2[0,j]
-            prob=pdf1[1,i]*pdf2[1,j]
+            value = pdf1[0,i]+pdf2[0,j]
+            prob = pdf1[1,i]*pdf2[1,j]
             pdfout.append([value,prob])
 
     pdfout = np.array(pdfout).T
@@ -34,13 +34,13 @@ def labelprop(pdf1, pdf2):
 
     # Doppelte Zeiten zusammenführen (Wahrscheinlichkeiten addieren)
 
-    i=0
+    i = 0
     while i < pdfout.shape[1]-1:
-        if pdfout[0, i]==pdfout[0, i+1]:
-            pdfout[1, i] = pdfout[1, i]+pdfout[1, i+1]
+        if np.isclose([0, i], pdfout[0, i+1]):
+            pdfout[1, i] = pdfout[1, i] + pdfout[1, i+1]
             pdfout = np.delete(pdfout, i+1, axis=1)
         else:
-            i+=1
+            i +=1
 
     return pdfout
 
