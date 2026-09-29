@@ -36,7 +36,7 @@ def labelprop(pdf1, pdf2):
 
     i = 0
     while i < pdfout.shape[1]-1:
-        if np.isclose([0, i], pdfout[0, i+1]):
+        if np.isclose(pdfout[0, i], pdfout[0, i+1]):
             pdfout[1, i] = pdfout[1, i] + pdfout[1, i+1]
             pdfout = np.delete(pdfout, i+1, axis=1)
         else:

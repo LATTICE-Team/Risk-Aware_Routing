@@ -3,15 +3,13 @@ from labelprop import labelprop
 from maxcdf import maxcdf
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plt
-import zeichene_Graph
 from distributions import pdf2cdf, cdf2pdf
+from example_graphs import create_zwickau
+import sys
 
 x = 5
 y = 5
 G = createGitter.createGitterGraph(x,y)
-#print(G.nodes(data=True))
-print(G.edges(data=True))
 
 nodes = list(G.nodes(data=True))
 
@@ -19,6 +17,14 @@ T0_list = [attr['T0'] for n, attr in G.nodes(data=True)]    #Liste von "T0" alle
 minT0 = min(T0_list)                                            #kleinstes "T0"
 v = [n for n, attr in G.nodes(data=True)if attr['T0']==minT0] #Knoten mit kleinstem "T0"
 target = 't'  #Name vom Zielknoten
+
+allpaths = nx.all_simple_paths(G, source='s', target='t')
+# for path in allpaths:
+    # while node < len(path):
+    #     prelabel = G.nodes[path[node]]['ArrCDF']
+    #     transit_pdf = G.edges[path[node],path[node+1]]['TransittimesPDF']
+    #     nextlabel = labelprop(cdf2pdf(prelabel),np.array(transit_pdf))
+print(len(list(allpaths)))
 
 
 itercnt = 0
@@ -50,6 +56,3 @@ while minT0 < G.nodes[target]['ArrCDF'][0][-1]:
 print('Iterations:',itercnt)
 
 final = G.nodes[target]['ArrCDF']
-#print(final)
-#plt.plot(final[0],final[1])
-#plt.show()

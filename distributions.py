@@ -47,9 +47,9 @@ def isvalid_cdf(cdf):
             "Support points must be strictly increasing."
         )
 
-    if np.any(probabilities < 0 - tolerance) or np.any(probabilities > 1 + tolerance):
+    if np.any(probabilities < 0 + tolerance) or np.any(probabilities > 1 + tolerance):
         raise ValueError(
-            f"CDF values must lie between 0 and 1. "
+            f"CDF values must lie in (0,1]. "
             f"values are {probabilities}"
         )
 
@@ -104,3 +104,25 @@ def cdf2pdf(cdf):
     pdf[1, 1:] = np.diff(cdf[1])
 
     return pdf
+
+
+def isdominant(cdf1, cdf2):
+    """
+    Returns 1 if cdf1 is strictly dominating cdf2.
+
+    Parameters
+    ----------
+    cdf1: 2 x N numpy.ndarray
+    cdf2: 2 x N numpy.ndarray
+    """
+    isvalid_cdf(cdf1)
+    isvalid_cdf(cdf2)
+    tolerance = 1e-8    #tolerance for floatingpoint error
+
+    t1 = cdf1[0, :]
+    p1 = cdf1[1, :]
+    t2 = cdf2[0, :]
+    p2 = cdf2[1, :]
+
+    return 0
+    # WIP

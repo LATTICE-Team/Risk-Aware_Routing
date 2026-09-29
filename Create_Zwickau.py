@@ -1,9 +1,9 @@
 # Create Graph nfür Zwickau
 import networkx as nx
-import geopandas as gpd
-from shapely.geometry import Point
+#import geopandas as gpd
+#from shapely.geometry import Point
 import matplotlib.pyplot as plt
-import contextily as ctx
+#import contextily as ctx
 import numpy as np 
 
 def haversine(a,b):
