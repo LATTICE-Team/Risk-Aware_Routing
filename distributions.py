@@ -98,6 +98,7 @@ def cdf2pdf(cdf):
     -------
     pdf : 2 x N numpy.ndarray
     """
+    cdf = np.asarray(cdf, dtype=float)
     pdf = cdf.copy()
 
     pdf[1, 0] = cdf[1, 0]
