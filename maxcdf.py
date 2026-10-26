@@ -30,7 +30,7 @@ def maxcdf(cdf1, cdf2):
         if np.isclose(mcdf[1, i], mcdf[1, i-1]):
             mcdf = np.delete(mcdf, i, axis=1)
 
-    for i in range(mcdf.shape[1]-1):
+    for i in range(mcdf.shape[1]-2, -1, -1):
         if np.isclose(mcdf[0, i], mcdf[0, i+1]):
             mcdf = np.delete(mcdf, i, axis=1)
 
