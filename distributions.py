@@ -106,7 +106,7 @@ def cdf2pdf(cdf):
     return pdf
 
 
-def isdominant(cdf1, cdf2):
+def isdominant_cdf(cdf1, cdf2):
     """
     Returns 1 if cdf1 is strictly dominating cdf2.
 
