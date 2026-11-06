@@ -7,6 +7,7 @@ from distributions import pdf2cdf, cdf2pdf
 from example_graphs import create_zwickau
 import sys
 from propagate_distributions import propagate_distributions
+from tabulate import tabulate
 
 G = createGitter.createGitterGraph(5, 5)
 
@@ -25,16 +26,11 @@ target_cdf = cdfs["t"]
 if target_cdf is None:
     print("Das Ziel ist vom Start aus nicht erreichbar.")
 else:
-    print("Zeitpunkte:")
-    print(target_cdf[0])
-
-    print("Kumulierte Ankunftswahrscheinlichkeiten:")
-    print(target_cdf[1])
-
-# allpaths = nx.all_simple_paths(G, source='s', target='t')
-# for path in allpaths:
-    # while node < len(path):
-    #     prelabel = G.nodes[path[node]]['ArrCDF']
-    #     transit_pdf = G.edges[path[node],path[node+1]]['TransittimesPDF']
-    #     nextlabel = labelprop(cdf2pdf(prelabel),np.array(transit_pdf))
-# print(len(list(allpaths)))
+    target_cdf[1] = target_cdf[1]*100
+    print(tabulate(
+        target_cdf.T,
+        headers=['Time','Probability'],
+        tablefmt="grid",
+        floatfmt=(".0f",".2f"),
+        numalign="right",
+    ))
